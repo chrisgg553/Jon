@@ -55,8 +55,11 @@ Build a ModZone Store - digital goods marketplace with Cyberpunk Hacker Future a
 
 ## Payment Methods
 1. **Stripe** - Card payments (test mode, ready for live keys)
-2. **Zelle** - Send to chrisguevarap805@gmail.com
-3. **Debit Card** - Manual processing
+2. **Zelle** - Send to anag8920@gmail.com
+3. **Cash App** - Customer selects, you send them your $cashtag
+4. **Venmo** - Customer selects, you send them your @username
+5. **PayPal** - Customer selects, you send invoice to their email
+6. **Apple Pay / Google Pay** - Customer selects, you send payment link
 
 ## Prioritized Backlog
 

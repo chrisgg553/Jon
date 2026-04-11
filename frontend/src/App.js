@@ -804,27 +804,81 @@ const Checkout = () => {
                   <DollarSign className={`w-5 h-5 mr-3 ${paymentMethod === 'zelle' ? 'text-[#00FFA3]' : 'text-zinc-500'}`} />
                   <div className="flex-1">
                     <span className="font-mono text-sm uppercase">Zelle</span>
-                    <p className="text-xs text-zinc-500">Send to chrisguevarap805@gmail.com</p>
+                    <p className="text-xs text-zinc-500">Send to anag8920@gmail.com</p>
                   </div>
                   {paymentMethod === 'zelle' && <Check className="w-5 h-5 text-[#00FFA3]" />}
                 </label>
 
-                <label className={`flex items-center p-4 border cursor-pointer transition-all ${paymentMethod === 'debit' ? 'border-[#00FFA3] bg-[#00FFA3]/5' : 'border-zinc-800'}`}>
+                <label className={`flex items-center p-4 border cursor-pointer transition-all ${paymentMethod === 'cashapp' ? 'border-[#00FFA3] bg-[#00FFA3]/5' : 'border-zinc-800'}`}>
                   <input
                     type="radio"
                     name="payment"
-                    value="debit"
-                    checked={paymentMethod === 'debit'}
+                    value="cashapp"
+                    checked={paymentMethod === 'cashapp'}
                     onChange={(e) => setPaymentMethod(e.target.value)}
                     className="sr-only"
-                    data-testid="payment-debit"
+                    data-testid="payment-cashapp"
                   />
-                  <CreditCard className={`w-5 h-5 mr-3 ${paymentMethod === 'debit' ? 'text-[#00FFA3]' : 'text-zinc-500'}`} />
+                  <DollarSign className={`w-5 h-5 mr-3 ${paymentMethod === 'cashapp' ? 'text-[#00FFA3]' : 'text-zinc-500'}`} />
                   <div className="flex-1">
-                    <span className="font-mono text-sm uppercase">Debit Card (Manual)</span>
-                    <p className="text-xs text-zinc-500">We'll contact you for payment details</p>
+                    <span className="font-mono text-sm uppercase">Cash App</span>
+                    <p className="text-xs text-zinc-500">Fast & easy payment</p>
                   </div>
-                  {paymentMethod === 'debit' && <Check className="w-5 h-5 text-[#00FFA3]" />}
+                  {paymentMethod === 'cashapp' && <Check className="w-5 h-5 text-[#00FFA3]" />}
+                </label>
+
+                <label className={`flex items-center p-4 border cursor-pointer transition-all ${paymentMethod === 'venmo' ? 'border-[#00FFA3] bg-[#00FFA3]/5' : 'border-zinc-800'}`}>
+                  <input
+                    type="radio"
+                    name="payment"
+                    value="venmo"
+                    checked={paymentMethod === 'venmo'}
+                    onChange={(e) => setPaymentMethod(e.target.value)}
+                    className="sr-only"
+                    data-testid="payment-venmo"
+                  />
+                  <DollarSign className={`w-5 h-5 mr-3 ${paymentMethod === 'venmo' ? 'text-[#00FFA3]' : 'text-zinc-500'}`} />
+                  <div className="flex-1">
+                    <span className="font-mono text-sm uppercase">Venmo</span>
+                    <p className="text-xs text-zinc-500">Quick & secure</p>
+                  </div>
+                  {paymentMethod === 'venmo' && <Check className="w-5 h-5 text-[#00FFA3]" />}
+                </label>
+
+                <label className={`flex items-center p-4 border cursor-pointer transition-all ${paymentMethod === 'paypal' ? 'border-[#00FFA3] bg-[#00FFA3]/5' : 'border-zinc-800'}`}>
+                  <input
+                    type="radio"
+                    name="payment"
+                    value="paypal"
+                    checked={paymentMethod === 'paypal'}
+                    onChange={(e) => setPaymentMethod(e.target.value)}
+                    className="sr-only"
+                    data-testid="payment-paypal"
+                  />
+                  <CreditCard className={`w-5 h-5 mr-3 ${paymentMethod === 'paypal' ? 'text-[#00FFA3]' : 'text-zinc-500'}`} />
+                  <div className="flex-1">
+                    <span className="font-mono text-sm uppercase">PayPal</span>
+                    <p className="text-xs text-zinc-500">Buyer protection included</p>
+                  </div>
+                  {paymentMethod === 'paypal' && <Check className="w-5 h-5 text-[#00FFA3]" />}
+                </label>
+
+                <label className={`flex items-center p-4 border cursor-pointer transition-all ${paymentMethod === 'applepay' ? 'border-[#00FFA3] bg-[#00FFA3]/5' : 'border-zinc-800'}`}>
+                  <input
+                    type="radio"
+                    name="payment"
+                    value="applepay"
+                    checked={paymentMethod === 'applepay'}
+                    onChange={(e) => setPaymentMethod(e.target.value)}
+                    className="sr-only"
+                    data-testid="payment-applepay"
+                  />
+                  <CreditCard className={`w-5 h-5 mr-3 ${paymentMethod === 'applepay' ? 'text-[#00FFA3]' : 'text-zinc-500'}`} />
+                  <div className="flex-1">
+                    <span className="font-mono text-sm uppercase">Apple Pay / Google Pay</span>
+                    <p className="text-xs text-zinc-500">Tap to pay - instant</p>
+                  </div>
+                  {paymentMethod === 'applepay' && <Check className="w-5 h-5 text-[#00FFA3]" />}
                 </label>
               </div>
             </div>
@@ -876,7 +930,27 @@ const Checkout = () => {
 
               {paymentMethod === 'zelle' && (
                 <p className="text-xs text-zinc-500 mt-4 text-center">
-                  After placing order, send ${total.toFixed(2)} via Zelle to chrisguevarap805@gmail.com
+                  After placing order, send ${total.toFixed(2)} via Zelle to <span className="text-[#00FFA3]">anag8920@gmail.com</span>
+                </p>
+              )}
+              {paymentMethod === 'cashapp' && (
+                <p className="text-xs text-zinc-500 mt-4 text-center">
+                  After placing order, we'll send you our Cash App tag to complete payment
+                </p>
+              )}
+              {paymentMethod === 'venmo' && (
+                <p className="text-xs text-zinc-500 mt-4 text-center">
+                  After placing order, we'll send you our Venmo username to complete payment
+                </p>
+              )}
+              {paymentMethod === 'paypal' && (
+                <p className="text-xs text-zinc-500 mt-4 text-center">
+                  After placing order, we'll send you a PayPal invoice to <span className="text-[#00FFA3]">{formData.email || 'your email'}</span>
+                </p>
+              )}
+              {paymentMethod === 'applepay' && (
+                <p className="text-xs text-zinc-500 mt-4 text-center">
+                  After placing order, we'll send you a payment link for Apple Pay / Google Pay
                 </p>
               )}
             </div>
@@ -954,8 +1028,16 @@ const CheckoutSuccess = () => {
               <div className="cyber-card p-6 text-left mb-8">
                 <h3 className="font-heading text-lg font-bold uppercase mb-3">Payment Instructions</h3>
                 <p className="text-zinc-400 text-sm mb-2">Please send your payment via Zelle to:</p>
-                <p className="font-mono text-[#00FFA3]">chrisguevarap805@gmail.com</p>
+                <p className="font-mono text-[#00FFA3]">anag8920@gmail.com</p>
                 <p className="text-zinc-500 text-xs mt-3">Include your email in the memo for faster processing.</p>
+              </div>
+            )}
+            {(method === 'cashapp' || method === 'venmo' || method === 'paypal' || method === 'applepay') && (
+              <div className="cyber-card p-6 text-left mb-8">
+                <h3 className="font-heading text-lg font-bold uppercase mb-3">Payment Instructions</h3>
+                <p className="text-zinc-400 text-sm mb-2">We've received your order!</p>
+                <p className="text-zinc-400 text-sm">Check your email at <span className="text-[#00FFA3]">{searchParams.get('email') || 'your inbox'}</span> for payment details.</p>
+                <p className="text-zinc-500 text-xs mt-3">We'll send you the payment link within a few minutes.</p>
               </div>
             )}
             <Link to="/products" className="cyber-btn">Continue Shopping</Link>
