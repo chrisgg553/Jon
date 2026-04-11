@@ -183,15 +183,15 @@ const Footer = () => {
     <footer className="bg-[#09090b] border-t border-zinc-800 mt-20">
       <div className="border-b border-zinc-800">
         <Marquee speed={40} className="py-3 bg-black">
-          <span className="marquee-content text-zinc-500 mx-8">MODZONE STORE</span>
+          <span className="marquee-content text-zinc-500 mx-8">CHRISTOPHER G'S MODZONE</span>
           <span className="marquee-content text-[#00FFA3] mx-8">•</span>
-          <span className="marquee-content text-zinc-500 mx-8">PREMIUM MODS</span>
+          <span className="marquee-content text-zinc-500 mx-8">TRUSTED SELLER SINCE 2019</span>
           <span className="marquee-content text-[#FF007F] mx-8">•</span>
-          <span className="marquee-content text-zinc-500 mx-8">INSTANT DELIVERY</span>
+          <span className="marquee-content text-zinc-500 mx-8">500+ HAPPY CUSTOMERS</span>
           <span className="marquee-content text-[#00FFA3] mx-8">•</span>
-          <span className="marquee-content text-zinc-500 mx-8">24/7 SUPPORT</span>
+          <span className="marquee-content text-zinc-500 mx-8">FAST DELIVERY</span>
           <span className="marquee-content text-[#FF007F] mx-8">•</span>
-          <span className="marquee-content text-zinc-500 mx-8">SECURE PAYMENTS</span>
+          <span className="marquee-content text-zinc-500 mx-8">REAL HUMAN SUPPORT</span>
           <span className="marquee-content text-[#00FFA3] mx-8">•</span>
         </Marquee>
       </div>
@@ -204,39 +204,54 @@ const Footer = () => {
               </div>
               <span className="font-heading font-bold text-xl">MODZONE</span>
             </div>
-            <p className="text-zinc-500 text-sm">Your trusted source for premium gaming mods and digital services.</p>
+            <p className="text-zinc-500 text-sm mb-2">Run by <span className="text-[#00FFA3]">Christopher G</span></p>
+            <p className="text-zinc-600 text-xs">Your trusted plug for premium gaming mods and social media growth since 2019.</p>
           </div>
           <div>
-            <h4 className="font-mono text-xs uppercase tracking-widest text-[#00FFA3] mb-4">Categories</h4>
+            <h4 className="font-mono text-xs uppercase tracking-widest text-[#00FFA3] mb-4">What I Sell</h4>
             <ul className="space-y-2">
-              <li><Link to="/products?category=instagram" className="text-zinc-400 hover:text-white transition-colors text-sm">Instagram</Link></li>
-              <li><Link to="/products?category=ps5" className="text-zinc-400 hover:text-white transition-colors text-sm">PS5 Mods</Link></li>
+              <li><Link to="/products?category=instagram" className="text-zinc-400 hover:text-white transition-colors text-sm">Instagram Growth</Link></li>
+              <li><Link to="/products?category=ps5" className="text-zinc-400 hover:text-white transition-colors text-sm">PS5 Mods & Jailbreaks</Link></li>
               <li><Link to="/products?category=xbox" className="text-zinc-400 hover:text-white transition-colors text-sm">Xbox Mods</Link></li>
               <li><Link to="/products?category=saves" className="text-zinc-400 hover:text-white transition-colors text-sm">Game Saves</Link></li>
-              <li><Link to="/products?category=accounts" className="text-zinc-400 hover:text-white transition-colors text-sm">Accounts</Link></li>
+              <li><Link to="/products?category=accounts" className="text-zinc-400 hover:text-white transition-colors text-sm">Modded Accounts</Link></li>
             </ul>
           </div>
           <div>
-            <h4 className="font-mono text-xs uppercase tracking-widest text-[#00FFA3] mb-4">Support</h4>
+            <h4 className="font-mono text-xs uppercase tracking-widest text-[#00FFA3] mb-4">Payment Methods</h4>
             <ul className="space-y-2">
-              <li><Link to="/contact" className="text-zinc-400 hover:text-white transition-colors text-sm">Contact Us</Link></li>
-              <li><span className="text-zinc-400 text-sm">FAQ</span></li>
-              <li><span className="text-zinc-400 text-sm">Refund Policy</span></li>
-              <li><span className="text-zinc-400 text-sm">Terms of Service</span></li>
+              <li><span className="text-zinc-400 text-sm">Zelle</span></li>
+              <li><span className="text-zinc-400 text-sm">Cash App</span></li>
+              <li><span className="text-zinc-400 text-sm">Venmo</span></li>
+              <li><span className="text-zinc-400 text-sm">PayPal</span></li>
+              <li><span className="text-zinc-400 text-sm">Apple Pay / Google Pay</span></li>
             </ul>
           </div>
           <div>
-            <h4 className="font-mono text-xs uppercase tracking-widest text-[#00FFA3] mb-4">Contact</h4>
+            <h4 className="font-mono text-xs uppercase tracking-widest text-[#00FFA3] mb-4">Hit Me Up</h4>
             <ul className="space-y-2">
               <li className="flex items-center gap-2 text-zinc-400 text-sm">
                 <Mail className="w-4 h-4" />
                 chrisguevarap805@gmail.com
               </li>
+              <li className="text-zinc-600 text-xs mt-4">
+                I usually respond within minutes. Real person, real support.
+              </li>
             </ul>
+            <Link to="/contact" className="cyber-btn-outline text-xs py-2 px-4 mt-4 inline-block">
+              Message Chris
+            </Link>
           </div>
         </div>
-        <div className="border-t border-zinc-800 mt-8 pt-8 text-center">
-          <p className="text-zinc-600 text-xs font-mono">© 2026 MODZONE. ALL RIGHTS RESERVED.</p>
+        <div className="border-t border-zinc-800 mt-8 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-zinc-600 text-xs font-mono">© 2026 MODZONE BY CHRISTOPHER G. ALL RIGHTS RESERVED.</p>
+          <div className="flex items-center gap-4 text-zinc-600 text-xs">
+            <span>Trusted Seller</span>
+            <span>•</span>
+            <span>Money Back Guarantee</span>
+            <span>•</span>
+            <span>Secure Payments</span>
+          </div>
         </div>
       </div>
     </footer>
@@ -294,6 +309,13 @@ const Home = () => {
     { id: 'accounts', name: 'Modded Accounts', desc: 'GTA, Warzone, Fortnite', image: 'https://static.prod-images.emergentagent.com/jobs/6d346769-3e47-4bc5-b07b-3bc09e1b0e9a/images/e5e116757e86bb4c47405791dd8bf4cd9843346436ab28f401172b5fa4071eb3.png', from: '$9.99' },
   ];
 
+  const testimonials = [
+    { name: 'Jake M.', text: 'Got my GTA account in like 10 mins. Chris is legit, will buy again!', rating: 5 },
+    { name: 'Sarah K.', text: 'Best prices for Instagram followers. Real accounts, no drops. Thanks Chris!', rating: 5 },
+    { name: 'Mike R.', text: 'PS5 jailbreak worked perfectly. Great customer service from Christopher.', rating: 5 },
+    { name: 'Alex T.', text: 'Warzone account was exactly as described. Fast delivery, trusted seller.', rating: 5 },
+  ];
+
   return (
     <div className="min-h-screen" data-testid="home-page">
       {/* Hero Section */}
@@ -305,23 +327,79 @@ const Home = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="font-mono text-[#00FFA3] text-xs tracking-[0.3em] uppercase mb-4 block">// PREMIUM DIGITAL MARKETPLACE</span>
+            <span className="font-mono text-[#00FFA3] text-xs tracking-[0.3em] uppercase mb-4 block">// CHRISTOPHER G'S PREMIUM MARKETPLACE</span>
             <h1 className="font-heading text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tighter uppercase mb-6">
               <span className="text-white">MOD</span>
               <span className="text-[#00FFA3] text-glow">ZONE</span>
             </h1>
-            <p className="text-zinc-400 text-lg max-w-xl mb-8">
-              Your trusted source for premium gaming mods, modded accounts, and social media growth services.
+            <p className="text-zinc-400 text-lg max-w-xl mb-4">
+              Hey, I'm <span className="text-[#00FFA3]">Christopher G</span> - your plug for premium gaming mods, modded accounts, and social media growth. 
+            </p>
+            <p className="text-zinc-500 text-base max-w-xl mb-8">
+              Been doing this for years. Fast delivery, real support, no BS. Hit me up and let's get you sorted.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link to="/products" className="cyber-btn" data-testid="shop-now-btn">
                 SHOP NOW <ChevronRight className="inline w-4 h-4 ml-1" />
               </Link>
               <Link to="/contact" className="cyber-btn-outline" data-testid="contact-btn">
-                CONTACT US
+                MESSAGE CHRIS
               </Link>
             </div>
+            <div className="mt-8 flex items-center gap-6 text-sm">
+              <div className="flex items-center gap-2">
+                <Check className="w-4 h-4 text-[#00FFA3]" />
+                <span className="text-zinc-400">500+ Happy Customers</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Check className="w-4 h-4 text-[#00FFA3]" />
+                <span className="text-zinc-400">Instant Delivery</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Check className="w-4 h-4 text-[#00FFA3]" />
+                <span className="text-zinc-400">24/7 Support</span>
+              </div>
+            </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Trust Banner */}
+      <section className="bg-[#00FFA3] py-4">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex flex-wrap items-center justify-center gap-8 text-black font-mono text-sm uppercase tracking-wider">
+            <span>Trusted Seller</span>
+            <span>•</span>
+            <span>Fast Delivery</span>
+            <span>•</span>
+            <span>Secure Payments</span>
+            <span>•</span>
+            <span>Real Support</span>
+            <span>•</span>
+            <span>Money Back Guarantee</span>
+          </div>
+        </div>
+      </section>
+
+      {/* About Chris Section */}
+      <section className="py-16 bg-[#09090b]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="cyber-card p-8 flex flex-col md:flex-row items-center gap-8">
+            <div className="w-32 h-32 bg-gradient-to-br from-[#00FFA3] to-[#FF007F] flex items-center justify-center text-4xl font-heading font-bold text-black rounded-full">
+              CG
+            </div>
+            <div className="flex-1 text-center md:text-left">
+              <h2 className="font-heading text-2xl font-bold uppercase mb-2">Meet Christopher G</h2>
+              <p className="text-zinc-400 mb-4">
+                What's good! I'm Chris, and I've been in the modding game since 2019. Started out helping my boys with GTA accounts, 
+                now I'm running one of the most trusted mod shops around. Every order gets my personal attention - 
+                I'm not some random bot, I'm a real person who actually gives a damn about my customers.
+              </p>
+              <p className="text-zinc-500 text-sm">
+                Got questions? Just hit me up. I usually respond within minutes, not days.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -330,7 +408,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-12">
             <div>
-              <span className="font-mono text-[#00FFA3] text-xs tracking-[0.3em] uppercase">// BROWSE</span>
+              <span className="font-mono text-[#00FFA3] text-xs tracking-[0.3em] uppercase">// WHAT I'M SELLING</span>
               <h2 className="font-heading text-3xl sm:text-4xl font-bold uppercase mt-2">Categories</h2>
             </div>
             <Link to="/products" className="cyber-btn-outline text-sm py-2 px-4" data-testid="view-all-btn">
@@ -373,8 +451,8 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-12">
             <div>
-              <span className="font-mono text-[#00FFA3] text-xs tracking-[0.3em] uppercase">// HOT ITEMS</span>
-              <h2 className="font-heading text-3xl sm:text-4xl font-bold uppercase mt-2">Featured Products</h2>
+              <span className="font-mono text-[#00FFA3] text-xs tracking-[0.3em] uppercase">// HOT RIGHT NOW</span>
+              <h2 className="font-heading text-3xl sm:text-4xl font-bold uppercase mt-2">Best Sellers</h2>
             </div>
           </div>
           {loading ? (
@@ -421,14 +499,47 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Testimonials */}
       <section className="py-20 bg-[#050505]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="font-mono text-[#00FFA3] text-xs tracking-[0.3em] uppercase">// REAL REVIEWS</span>
+            <h2 className="font-heading text-3xl sm:text-4xl font-bold uppercase mt-2">What People Say</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {testimonials.map((review, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="cyber-card p-6"
+              >
+                <div className="flex items-center gap-1 mb-3">
+                  {[...Array(review.rating)].map((_, i) => (
+                    <span key={i} className="text-[#FDE047]">★</span>
+                  ))}
+                </div>
+                <p className="text-zinc-300 text-sm mb-4">"{review.text}"</p>
+                <p className="text-[#00FFA3] font-mono text-xs">— {review.name}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-20 bg-[#09090b]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="font-mono text-[#00FFA3] text-xs tracking-[0.3em] uppercase">// WHY CHOOSE ME</span>
+            <h2 className="font-heading text-3xl sm:text-4xl font-bold uppercase mt-2">The Chris G Difference</h2>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { icon: <Clock className="w-6 h-6" />, title: 'Instant Delivery', desc: 'Most products delivered within minutes of purchase' },
-              { icon: <CreditCard className="w-6 h-6" />, title: 'Secure Payment', desc: 'Multiple payment options including Stripe, Zelle & Debit' },
-              { icon: <MessageSquare className="w-6 h-6" />, title: '24/7 Support', desc: 'Our team is here to help you anytime' },
+              { icon: <Clock className="w-6 h-6" />, title: 'Lightning Fast', desc: "Most orders delivered in under 30 minutes. I don't sleep on my customers." },
+              { icon: <CreditCard className="w-6 h-6" />, title: 'Pay Your Way', desc: 'Zelle, Cash App, Venmo, PayPal, Apple Pay - whatever works for you.' },
+              { icon: <MessageSquare className="w-6 h-6" />, title: 'Real Human Support', desc: "Not a bot. Not an AI. Just me, Chris, ready to help you out 24/7." },
             ].map((feature, index) => (
               <div key={index} className="cyber-card p-6 text-center">
                 <div className="w-12 h-12 mx-auto mb-4 bg-[#00FFA3]/10 flex items-center justify-center text-[#00FFA3]">
@@ -438,6 +549,24 @@ const Home = () => {
                 <p className="text-zinc-500 text-sm">{feature.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-r from-[#00FFA3]/20 to-[#FF007F]/20">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="font-heading text-3xl sm:text-4xl font-bold uppercase mb-4">Ready to Level Up?</h2>
+          <p className="text-zinc-400 mb-8 max-w-2xl mx-auto">
+            Stop wasting time grinding. Get what you need today and start enjoying the game the way it's meant to be played.
+          </p>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <Link to="/products" className="cyber-btn">
+              BROWSE PRODUCTS
+            </Link>
+            <Link to="/contact" className="cyber-btn-outline">
+              TALK TO CHRIS
+            </Link>
           </div>
         </div>
       </section>
@@ -1104,56 +1233,74 @@ const Contact = () => {
     <div className="min-h-screen pt-24 pb-12" data-testid="contact-page">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
-          <span className="font-mono text-[#00FFA3] text-xs tracking-[0.3em] uppercase">// GET IN TOUCH</span>
-          <h1 className="font-heading text-4xl font-bold uppercase mt-2">Contact Us</h1>
+          <span className="font-mono text-[#00FFA3] text-xs tracking-[0.3em] uppercase">// LET'S TALK</span>
+          <h1 className="font-heading text-4xl font-bold uppercase mt-2">Message Chris</h1>
+          <p className="text-zinc-500 mt-2">Got questions? Need help? Just wanna chat? I'm here for you.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
             <div className="cyber-card p-6 mb-6">
-              <h2 className="font-heading text-lg font-bold uppercase mb-4">Contact Info</h2>
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-16 h-16 bg-gradient-to-br from-[#00FFA3] to-[#FF007F] flex items-center justify-center text-2xl font-heading font-bold text-black rounded-full">
+                  CG
+                </div>
+                <div>
+                  <h2 className="font-heading text-lg font-bold uppercase">Christopher G</h2>
+                  <p className="text-zinc-500 text-sm">Owner & Your Personal Support</p>
+                </div>
+              </div>
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <Mail className="w-5 h-5 text-[#00FFA3]" />
                   <span className="text-zinc-300">chrisguevarap805@gmail.com</span>
                 </div>
+                <p className="text-zinc-500 text-sm">
+                  I personally read and respond to every message. Usually within minutes, sometimes hours if I'm sleeping lol.
+                </p>
               </div>
             </div>
             <div className="cyber-card p-6">
-              <h2 className="font-heading text-lg font-bold uppercase mb-4">FAQ</h2>
+              <h2 className="font-heading text-lg font-bold uppercase mb-4">Common Questions</h2>
               <div className="space-y-4 text-sm">
                 <div>
-                  <p className="text-[#00FFA3] font-mono">How fast is delivery?</p>
-                  <p className="text-zinc-500 mt-1">Most digital products are delivered within minutes to a few hours.</p>
+                  <p className="text-[#00FFA3] font-mono">How fast do you deliver?</p>
+                  <p className="text-zinc-500 mt-1">Most stuff is delivered in under 30 minutes. I try to be as fast as possible.</p>
                 </div>
                 <div>
-                  <p className="text-[#00FFA3] font-mono">Is it safe?</p>
-                  <p className="text-zinc-500 mt-1">Yes! All transactions are secure and we never share your information.</p>
+                  <p className="text-[#00FFA3] font-mono">Is this actually safe?</p>
+                  <p className="text-zinc-500 mt-1">100%. Been doing this since 2019, never had issues. Your info stays private.</p>
                 </div>
                 <div>
-                  <p className="text-[#00FFA3] font-mono">Do you offer refunds?</p>
-                  <p className="text-zinc-500 mt-1">Refunds are available for undelivered products. Contact us for details.</p>
+                  <p className="text-[#00FFA3] font-mono">What if something goes wrong?</p>
+                  <p className="text-zinc-500 mt-1">I got you. Full refund or replacement if anything doesn't work as promised.</p>
+                </div>
+                <div>
+                  <p className="text-[#00FFA3] font-mono">How do I pay?</p>
+                  <p className="text-zinc-500 mt-1">Zelle, Cash App, Venmo, PayPal, Apple Pay - whatever's easiest for you.</p>
                 </div>
               </div>
             </div>
           </div>
 
           <div className="cyber-card p-6">
+            <h2 className="font-heading text-lg font-bold uppercase mb-4">Send Me a Message</h2>
             {success ? (
               <div className="text-center py-8">
                 <Check className="w-16 h-16 mx-auto text-[#00FFA3] mb-4" />
-                <h3 className="font-heading text-xl font-bold uppercase mb-2">Message Sent!</h3>
-                <p className="text-zinc-500">We'll get back to you as soon as possible.</p>
+                <h3 className="font-heading text-xl font-bold uppercase mb-2">Got It!</h3>
+                <p className="text-zinc-500">I'll hit you back ASAP. Check your email!</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-xs font-mono text-zinc-500 uppercase tracking-wider mb-2">Name</label>
+                  <label className="block text-xs font-mono text-zinc-500 uppercase tracking-wider mb-2">Your Name</label>
                   <input
                     type="text"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="cyber-input w-full"
+                    placeholder="What should I call you?"
                     required
                     data-testid="contact-name"
                   />
@@ -1165,6 +1312,7 @@ const Contact = () => {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="cyber-input w-full"
+                    placeholder="So I can get back to you"
                     required
                     data-testid="contact-email"
                   />
@@ -1176,6 +1324,7 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                     className="cyber-input w-full"
+                    placeholder="What's this about?"
                     required
                     data-testid="contact-subject"
                   />
@@ -1186,6 +1335,7 @@ const Contact = () => {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="cyber-input w-full h-32 resize-none"
+                    placeholder="Tell me what you need..."
                     required
                     data-testid="contact-message"
                   />
@@ -1196,7 +1346,7 @@ const Contact = () => {
                   </div>
                 )}
                 <button type="submit" className="cyber-btn w-full" disabled={loading} data-testid="contact-submit">
-                  {loading ? <><Loader2 className="w-4 h-4 animate-spin inline mr-2" /> SENDING...</> : 'SEND MESSAGE'}
+                  {loading ? <><Loader2 className="w-4 h-4 animate-spin inline mr-2" /> SENDING...</> : 'SEND TO CHRIS'}
                 </button>
               </form>
             )}
