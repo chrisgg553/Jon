@@ -1,0 +1,78 @@
+{
+  "theme": "dark",
+  "archetype": "7 (Electric & Neon)",
+  "vibe": "Cyberpunk Hacker Future, Underground Digital Market, L33t Aesthetics, Premium Black Market",
+  "colors": {
+    "background_base": "#050505",
+    "background_surface": "#09090b",
+    "background_glass": "rgba(9, 9, 11, 0.7)",
+    "primary": "#00FFA3",
+    "primary_hover": "#33FFB5",
+    "secondary": "#FF007F",
+    "accent": "#FDE047",
+    "text_primary": "#FFFFFF",
+    "text_secondary": "#A1A1AA",
+    "border": "#1F1F2E",
+    "border_glow": "rgba(0, 255, 163, 0.5)",
+    "success": "#00FFA3",
+    "warning": "#FDE047",
+    "danger": "#FF007F"
+  },
+  "typography": {
+    "font_primary": "Outfit, sans-serif",
+    "font_heading": "Unbounded, sans-serif",
+    "font_mono": "JetBrains Mono, monospace",
+    "h1": "text-4xl sm:text-5xl lg:text-6xl font-heading tracking-tighter uppercase",
+    "h2": "text-2xl sm:text-3xl lg:text-4xl font-heading tracking-tight uppercase",
+    "h3": "text-xl sm:text-2xl font-heading tracking-tight uppercase",
+    "body": "text-base font-primary leading-relaxed text-zinc-300",
+    "mono_accent": "text-xs font-mono tracking-[0.2em] uppercase text-primary"
+  },
+  "spacing_and_layout": {
+    "philosophy": "Terminal density for admin, wide immersive asymmetry for store.",
+    "container_padding": "p-6 md:p-12 lg:p-16",
+    "store_grid": "grid-cols-1 md:grid-cols-8 lg:grid-cols-12 gap-8",
+    "dashboard_grid": "grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6",
+    "radius_system": "rounded-none",
+    "borders": "border border-zinc-800"
+  },
+  "surfaces_and_effects": {
+    "header": "backdrop-blur-xl bg-black/60 border-b border-primary/20 sticky top-0 z-50",
+    "cards_store": "bg-zinc-950 border border-zinc-800 hover:border-primary/50 transition-colors duration-300 group",
+    "cards_dashboard": "bg-[#09090b] border border-zinc-800 rounded-none",
+    "buttons_primary": "bg-primary text-black font-mono uppercase tracking-widest px-6 py-3 hover:bg-primary_hover transition-all shadow-[0_0_15px_rgba(0,255,163,0.3)]",
+    "buttons_secondary": "bg-transparent border border-primary text-primary font-mono uppercase tracking-widest px-6 py-3 hover:bg-primary/10 transition-all",
+    "terminal_glow": "drop-shadow-[0_0_8px_rgba(0,255,163,0.5)]",
+    "scanlines": "bg-[linear-gradient(rgba(0,255,163,0.03)_1px,transparent_1px)] bg-[size:100%_4px]"
+  },
+  "motion_and_interactions": {
+    "hover_state": "Slight lift (-translate-y-1), border illuminates to neon green or pink.",
+    "focus_state": "focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-black",
+    "transitions": "transition-all duration-300 ease-in-out",
+    "special_effects": "Use react-fast-marquee for an 'Editorial Ribbon' of hacker stats or categories at the footer or middle of the store front."
+  },
+  "images": {
+    "hero_background": "https://static.prod-images.emergentagent.com/jobs/6d346769-3e47-4bc5-b07b-3bc09e1b0e9a/images/e5e116757e86bb4c47405791dd8bf4cd9843346436ab28f401172b5fa4071eb3.png",
+    "category_ps5_xbox": "https://static.prod-images.emergentagent.com/jobs/6d346769-3e47-4bc5-b07b-3bc09e1b0e9a/images/f6d5a23131a3a8713ddb671a2aee3c848f0214443cefa5726d7399ba61540f98.png",
+    "category_social_engagement": "https://static.prod-images.emergentagent.com/jobs/6d346769-3e47-4bc5-b07b-3bc09e1b0e9a/images/655e1532e1292ee0ed97a3630f535f85eec26b99fc53ccd59c9fd1e6a02c0bfa.png",
+    "category_game_saves": "https://static.prod-images.emergentagent.com/jobs/6d346769-3e47-4bc5-b07b-3bc09e1b0e9a/images/97f8067cc30f730e27308c2788eff05ffd24a991ae75b51c4a9e8e9431d20353.png",
+    "admin_dashboard_bg": "https://images.unsplash.com/photo-1577239458058-b179bc7479bf?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwzfHxkYXJrJTIwZ2FtaW5nJTIwc2V0dXB8ZW58MHx8fHwxNzc1ODk4MTkzfDA&ixlib=rb-4.1.0&q=85",
+    "generic_hacker_texture": "https://images.unsplash.com/photo-1586325194227-7625ed95172b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2ODh8MHwxfHNlYXJjaHwxfHxuZW9uJTIwaGFja2VyfGVufDB8fHx8MTc3NTg5ODE5M3ww&ixlib=rb-4.1.0&q=85"
+  },
+  "component_instructions": {
+    "libraries": [
+      "lucide-react",
+      "framer-motion",
+      "react-fast-marquee",
+      "recharts"
+    ],
+    "shadcn_overrides": "Do not use rounded corners. Override all Shadcn primitives (Input, Button, Card, Table) with 'rounded-none'. Change primary colors in tailwind.config.js to map to #00FFA3.",
+    "charts": "Use Recharts for the admin dashboard. Configure chart tooltips with dark background and neon green borders.",
+    "tables": "Admin order and customer databases must use a dense, monospace font layout for headers to mimic a terminal system.",
+    "forms": "Inputs should have bg-black, border-b border-zinc-700, focus:border-primary. No thick borders, minimal style.",
+    "checkout": "Must include fake 'Payment processing...' terminal-style loading state. Use monospace font for payment total."
+  },
+  "testing_requirements": {
+    "data_testid_rules": "All interactive elements, buttons, nav links, and form inputs MUST have data-testid attributes formatted in kebab-case (e.g., data-testid='add-to-cart-button', data-testid='admin-login-submit')."
+  }
+}
