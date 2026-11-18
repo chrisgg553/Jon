@@ -83,7 +83,7 @@ const server = http.createServer(async(req,res)=>{
       return res.end();
     }
     const type=upstream.headers.get('content-type')||'application/octet-stream';
-    if(type.includes('text/html')){
+    if(type.includes('text/html') || (isDoc && ZENROWS_API_KEY && (type.includes('text/plain') || type.includes('application/octet-stream')))){
       const raw=await upstream.text();
       if(raw.length>8_000_000)return send(res,413,'Page too large.');
       return send(res,upstream.status,rewriteHTML(raw,target.href),'text/html; charset=utf-8');
