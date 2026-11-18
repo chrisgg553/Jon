@@ -3,6 +3,7 @@ const http = require('node:http');
 const { createHmac, timingSafeEqual } = require('node:crypto');
 const { Readable } = require('node:stream');
 const fs = require('node:fs');
+const { gzipSync } = require('node:zlib');
 const PORT = Number(process.env.PORT || 10000);
 const ACCESS_TOKEN = process.env.ACCESS_TOKEN || '';
 const ZENROWS_API_KEY = process.env.ZENROWS_API_KEY || '';
@@ -11,6 +12,8 @@ const VALID_HOSTS = ['tiktok.com', 'tiktokcdn.com', 'tiktokcdn-us.com', 'tiktokv
 const page = fs.readFileSync('./public/index.html');
 const authCookie = createHmac('sha256', ACCESS_TOKEN).update('noveyflow-private-gateway-v2').digest('hex');
 const quota = new Map();
+const pageCache = new Map();
+const PAGE_CACHE_MS = 60_000; // short-lived, in-memory public-page cache; no account data
 function equal(a, b) { const x = Buffer.from(String(a)), y=Buffer.from(String(b)); return x.length === y.length && timingSafeEqual(x,y); }
 function cookies(req) { return Object.fromEntries((req.headers.cookie || '').split(';').map(p=>p.trim().split('=').slice(0,2)).filter(p=>p.length===2)); }
 function authorized(req) { return ACCESS_TOKEN.length >= 24 && equal(cookies(req).nv_auth || '', authCookie); }
@@ -37,6 +40,19 @@ function rewriteHTML(html, base) {
 function send(res, code, body, type='text/plain; charset=utf-8') {
   res.writeHead(code, {'Content-Type':type,'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff','X-Robots-Tag':'noindex, nofollow','Referrer-Policy':'no-referrer'});
   res.end(body);
+}
+function sendHTML(req,res,code,html,cacheHit=false) {
+  const body=Buffer.from(html,'utf8');
+  const headers={'Content-Type':'text/html; charset=utf-8','Cache-Control':'private, no-store',
+    'X-Content-Type-Options':'nosniff','X-Robots-Tag':'noindex, nofollow',
+    'Referrer-Policy':'no-referrer','Vary':'Accept-Encoding','X-NOVEYFLOW-Cache':cacheHit?'HIT':'MISS'};
+  if (/\bgzip\b/i.test(String(req.headers['accept-encoding']||'')) && body.length>1024) {
+    const compressed=gzipSync(body,{level:4});
+    headers['Content-Encoding']='gzip';headers['Content-Length']=String(compressed.length);
+    res.writeHead(code,headers);return res.end(compressed);
+  }
+  headers['Content-Length']=String(body.length);
+  res.writeHead(code,headers);return res.end(body);
 }
 function limited(req) {
   const ip = String(req.headers['x-forwarded-for'] || req.socket.remoteAddress || '').split(',')[0];
@@ -74,6 +90,11 @@ const server = http.createServer(async(req,res)=>{
   if(!target) return send(res,400,'Only allowed HTTPS TikTok destinations can be requested.');
   const isDoc=(req.headers.accept||'').includes('text/html') || target.pathname==='/' || target.pathname==='/foryou';
   try{
+    if (isDoc && req.method==='GET') {
+      const saved=pageCache.get(target.href);
+      if (saved && Date.now()-saved.at < PAGE_CACHE_MS) return sendHTML(req,res,saved.code,saved.html,true);
+      if (saved) pageCache.delete(target.href);
+    }
     const upstream=await getUpstream(target,req,isDoc);
     if([301,302,303,307,308].includes(upstream.status)){
       const loc=upstream.headers.get('location');
@@ -86,7 +107,12 @@ const server = http.createServer(async(req,res)=>{
     if(type.includes('text/html') || (isDoc && ZENROWS_API_KEY && (type.includes('text/plain') || type.includes('application/octet-stream')))){
       const raw=await upstream.text();
       if(raw.length>8_000_000)return send(res,413,'Page too large.');
-      return send(res,upstream.status,rewriteHTML(raw,target.href),'text/html; charset=utf-8');
+      const rewritten=rewriteHTML(raw,target.href);
+      if (isDoc && upstream.ok && req.method==='GET') {
+        if (pageCache.size>=12) pageCache.delete(pageCache.keys().next().value);
+        pageCache.set(target.href,{at:Date.now(),code:upstream.status,html:rewritten});
+      }
+      return sendHTML(req,res,upstream.status,rewritten);
     }
     res.writeHead(upstream.status,{'Content-Type':type,'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer',
       ...(upstream.headers.get('content-range')?{'Content-Range':upstream.headers.get('content-range')}:{})});
