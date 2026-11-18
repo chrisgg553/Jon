@@ -83,12 +83,20 @@ const server = http.createServer(async(req,res)=>{
   }
   if(!authorized(req)) return send(res,403,'Private gateway: open your invitation link from email.');
   if(here.pathname==='/') return send(res,200,page,'text/html; charset=utf-8');
-  if(here.pathname!=='/p') return send(res,404,'Not found');
-  if(req.method!=='GET'&&req.method!=='HEAD') return send(res,405,'Read-only gateway: account logins and submissions are disabled.');
+  // TikTok loads scripts, images, and API reads using path-relative URLs.
+  // The previous /p-only handler returned a plain "Not found" 404 for those requests.
+  // Resolve otherwise-unmatched GET/HEAD paths strictly against the allowlisted TikTok origin.
+  if(req.method!=='GET'&&req.method!=='HEAD') return send(res,405,'This gateway is read-only. Sign in and post only on the official TikTok website.');
   if(limited(req)) return send(res,429,'Request limit reached. Try again in one minute.');
-  const target=safeURL(here.searchParams.get('u')||'https://www.tiktok.com/');
-  if(!target) return send(res,400,'Only allowed HTTPS TikTok destinations can be requested.');
-  const isDoc=(req.headers.accept||'').includes('text/html') || target.pathname==='/' || target.pathname==='/foryou';
+  const requestUrl = here.pathname==='/p'
+    ? here.searchParams.get('u')
+    : 'https://www.tiktok.com' + here.pathname + here.search;
+  if(!requestUrl) return send(res,400,'Missing TikTok URL');
+  const target=safeURL(requestUrl);
+  if(!target) return send(res,400,'Only allowlisted HTTPS TikTok destinations are permitted.');
+  const contentAccept=String(req.headers.accept||'');
+  const docExt=/\.(?:js|mjs|css|png|jpe?g|gif|svg|webp|ico|woff2?|ttf|otf|mp4|webm|m3u8|ts|json|map)(?:$|\?)/i.test(target.pathname);
+  const isDoc=!docExt&&(contentAccept.includes('text/html')||target.pathname==='/'||target.pathname==='/foryou');
   try{
     if (isDoc && req.method==='GET') {
       const saved=pageCache.get(target.href);
@@ -107,12 +115,22 @@ const server = http.createServer(async(req,res)=>{
     if(type.includes('text/html') || (isDoc && ZENROWS_API_KEY && (type.includes('text/plain') || type.includes('application/octet-stream')))){
       const raw=await upstream.text();
       if(raw.length>8_000_000)return send(res,413,'Page too large.');
+      const blocked = /slardar_us_waf|_wafchallengeid|<body>\s*Please wait\.\.\./i.test(raw);
+      if (blocked) {
+        return sendHTML(req,res,200,'<!doctype html><html lang="en"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>TikTok verification</title><body style="font:16px -apple-system,sans-serif;background:#10111a;color:white;padding:2rem;max-width:35rem;margin:auto"><h2>TikTok requires verification</h2><p>This page is a TikTok security check. ZenRows cannot provide a reliable fully interactive account experience through this personal proxy.</p><p>For account access, use the <a href="https://www.tiktok.com/" rel="noopener noreferrer" style="color:#b5a0ff">official TikTok website</a> or the official app.</p><p><a href="/" style="color:#b5a0ff">Return to NOVEYFLOW</a></p></body></html>');
+      }
       const rewritten=rewriteHTML(raw,target.href);
       if (isDoc && upstream.ok && req.method==='GET') {
         if (pageCache.size>=12) pageCache.delete(pageCache.keys().next().value);
         pageCache.set(target.href,{at:Date.now(),code:upstream.status,html:rewritten});
       }
       return sendHTML(req,res,upstream.status,rewritten);
+    }
+    if(type.includes('text/css')){
+      const raw=await upstream.text();
+      if(raw.length>3_000_000)return send(res,413,'CSS too large');
+      const rewritten=raw.replace(/url\(\s*(["']?)([^"'()]+)\1\s*\)/gi,(m,q,u)=>'url('+q+proxyLink(u.trim(),target.href)+q+')');
+      return send(res,upstream.status,rewritten,'text/css; charset=utf-8');
     }
     res.writeHead(upstream.status,{'Content-Type':type,'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer',
       ...(upstream.headers.get('content-range')?{'Content-Range':upstream.headers.get('content-range')}:{})});
