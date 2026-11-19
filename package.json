@@ -1,12 +1,21 @@
 {
-  "name": "noveyflow-tiktok-safari-proxy",
-  "version": "1.0.0",
+  "name": "noveyflow-safari-proxy",
+  "version": "2.0.0",
   "private": true,
-  "description": "Read-only TikTok web proxy experiment for iPad Safari; ZenRows fetches page HTML",
-  "engines": {
-    "node": ">=20"
-  },
+  "type": "module",
+  "description": "Private experimental interactive web proxy with Scramjet; no paid dependencies",
   "scripts": {
     "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "dependencies": {
+    "express": "4.21.2",
+    "@mercuryworkshop/scramjet": "2.0.67-alpha.2",
+    "@mercuryworkshop/scramjet-controller": "0.0.14",
+    "@mercuryworkshop/scramjet-utils": "0.0.3",
+    "@mercuryworkshop/libcurl-transport": "2.0.5",
+    "@mercuryworkshop/wisp-js": "0.4.1"
   }
 }
