@@ -13,7 +13,23 @@ try {
  const transport=new LibcurlClient({wisp:(location.protocol==="https:"?"wss:":"ws:")+"//"+location.host+"/wisp/"});
  const controller=new window.$scramjetController.Controller({serviceworker:worker,transport,config:{scramjetPath:"/scram/scramjet.js",wasmPath:"/scram/scramjet.wasm",injectPath:"/controller/controller.inject.js"}});
  await controller.wait();
- frame=controller.createFrame(iframe);
+ class HistoryUrlCompat extends window.$scramjetUtils.ManagedPlugin {
+   constructor(){super("history-url-compat",[])}
+   install(activeFrame){
+     super.install(activeFrame);
+     this.tap(activeFrame.hooks.init.post,context=>{
+       if(!context.isTopLevel)return;
+       const win=context.window,history=win.history,client=context.client;
+       for(const method of ["pushState","replaceState"]){
+         const original=history[method];
+         history[method]=function(data,unused,url){
+           return original.call(this,data,unused,url??client.url.href);
+         };
+       }
+     });
+   }
+ }
+ frame=controller.createFrame(iframe,{plugins:[new HistoryUrlCompat(),new window.$scramjetUtils.HttpCachePlugin(),new window.$scramjetUtils.UrlWatcherPlugin(url=>{if(url?.startsWith("https://www.tiktok.com"))status.textContent="TikTok page: "+url.slice(0,85)})]});
  status.textContent="Proxy engine ready. TikTok may block its content.";
  setInterval(()=>navigator.serviceWorker.controller?.postMessage("keepalive"),15000);
 }catch(err){status.textContent="Proxy startup failed: "+(err?.message||String(err));status.style.color="#ffd1b5";console.error(err)}
